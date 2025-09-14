@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No Bias Bank</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #2c2c2c, #4d4d4d);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #fff;
+    }
+    .container, .result-container {
+      background: rgba(0,0,0,0.85);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: #f0f0f0;
+    }
+    form label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 500;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #2c2c2c;
+      color: #fff;
+      font-size: 16px;
+    }
+    select:hover { background: #3d3d3d; }
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 20px;
+      background: #0b76ef;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: #055bb5;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    }
+    .hidden { display: none; }
+    p { line-height: 1.6; }
+    a { color: #0b76ef; text-decoration: none; font-weight: 600; }
+    a:hover { color: #055bb5; }
+  </style>
+</head>
+<body>
+  <div class="container" id="formContainer">
+    <h1>No Bias Bank</h1>
+    <form id="loanForm">
+      <label>Age</label>
+      <select id="age">
+        <option value="23-30">23-30</option>
+        <option value="31-40">31-40</option>
+        <option value="41-50">41-50</option>
+        <option value="51-60">51-60</option>
+        <option value="61+">61+</option>
+      </select>
+
+      <label>Marital Status</label>
+      <select id="marital">
+        <option value="single">Single</option>
+        <option value="married">Married</option>
+        <option value="divorced">Divorced</option>
+        <option value="widowed">Widowed</option>
+      </select>
+
+      <label>Education Level</label>
+      <select id="education">
+        <option value="highschool">High School</option>
+        <option value="bachelor">Bachelor</option>
+        <option value="master">Master</option>
+        <option value="phd">PhD</option>
+      </select>
+
+      <label>Applicant Income (€ per annum)</label>
+      <select id="income">
+        <option value="20000">20,000 and below</option>
+        <option value="25000">25,000 </option>
+        <option value="30000">30,000 </option>
+        <option value="35000">35,000 </option>
+        <option value="40000">40,000 </option>
+        <option value="45000">45,000 </option>
+        <option value="50000">50,000 </option>
+        <option value="55000">55,000 </option>
+        <option value="60000">60,000 and above</option>
+      </select>
+
+      <label>Co-applicant Income (€ per annum)</label>
+      <select id="coIncome">
+        <option value="0">0</option>
+        <option value="5000">5,000</option>
+        <option value="10000">10,000</option>
+        <option value="15000">15,000</option>
+        <option value="20000">20,000</option>
+        <option value="25000">25,000 and above</option>
+      </select>
+
+      <label>Loan Amount Requested (€)</label>
+      <select id="loanAmount">
+        <option value="10000">10,000</option>
+        <option value="15000">15,000</option>
+        <option value="20000">20,000</option>
+        <option value="25000">25,000</option>
+        <option value="30000">30,000</option>
+        <option value="35000">35,000</option>
+        <option value="40000">40,000</option>
+        <option value="45000">45,000</option>
+        <option value="50000">50,000</option>
+      </select>
+
+      <label>Credit History</label>
+      <select id="creditHistory">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label>Number of Dependents</label>
+      <select id="dependents">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3+">3+</option>
+      </select>
+
+      <label>Property Location</label>
+      <select id="location">
+        <option value="urban">Urban</option>
+        <option value="suburban">Suburban</option>
+        <option value="rural">Rural</option>
+      </select>
+
+      <button type="submit">Check Eligibility</button>
+    </form>
+  </div>
+
+  <div class="result-container hidden" id="resultContainer">
+    <h1>No Bias Bank Result</h1>
+    <p id="loanStatus"></p>
+    <p id="predictedIdentity"></p>
+    <p>The information transmitted to financial institutions when applying for a loan contains sufficient information to figure out the ethnic group of the customers, and the pertaining biases mechanically transmitted into their evaluation.</p>
+    <p>As algorithms learn from data, if these are socially biased, they will mechanically replicate and reinforce these biases in their predictions. (Hassani, 2021)</p>
+    <p><a href="https://link.springer.com/article/10.1007/s43681-020-00026-z" target="_blank">Learn More About Bias in AI</a></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('loanForm');
+    const formContainer = document.getElementById('formContainer');
+    const resultContainer = document.getElementById('resultContainer');
+    const loanStatus = document.getElementById('loanStatus');
+    const predictedIdentity = document.getElementById('predictedIdentity');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const income = Number(document.getElementById('income').value);
+      const coIncome = Number(document.getElementById('coIncome').value);
+      const loanAmount = Number(document.getElementById('loanAmount').value);
+      const dependents = document.getElementById('dependents').value === "3+" ? 3 : Number(document.getElementById('dependents').value);
+      const creditHistory = document.getElementById('creditHistory').value;
+      const education = document.getElementById('education').value;
+      const location = document.getElementById('location').value;
+
+      // --- Loan score ---
+      let score = 0.4*income + 0.2*coIncome - 0.3*loanAmount - 0.1*dependents*1000;
+      if(creditHistory === "no") score -= 7000;
+      const approved = score > 35000;
+
+      // --- Gender prediction ---
+      let gender = "Female";
+      if(income > 40000 && ["bachelor","master","phd"].includes(education)) gender = "Male";
+      if(dependents >= 2 && loanAmount > 30000) gender = "Female";
+      if(location === "urban" && income > 35000) gender = "Male";
+
+      // --- Ethnicity prediction ---
+      let ethnicity = "Immigrant";
+      if(income > 50000 && coIncome > 20000 && location === "urban") ethnicity = "German";
+      if(dependents > 2 && loanAmount > 30000) ethnicity = "Immigrant";
+      if(education === "phd" && income > 45000) ethnicity = "German";
+
+      // Show result interface
+      formContainer.classList.add('hidden');
+      resultContainer.classList.remove('hidden');
+
+      loanStatus.textContent = `Loan Status: ${approved ? "Approved" : "Denied"}`;
+      predictedIdentity.textContent = `Predicted Gender: ${gender}, Predicted Ethnicity: ${ethnicity}`;
+    });
+  </script>
+</body>
+</html>
